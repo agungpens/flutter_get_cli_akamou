@@ -1,0 +1,33 @@
+name: get_cli
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment: 
+  sdk: '>=3.2.3 <4.0.0'
+
+dependencies: 
+  cupertino_icons: ^1.0.2
+  get: 4.6.6
+  http: ^1.2.0
+  badges: ^3.1.2
+  flutter: 
+    sdk: flutter
+  shared_preferences: ^2.2.3
+
+dev_dependencies: 
+  flutter_lints: ^4.0.0
+  flutter_test: 
+    sdk: flutter
+
+flutter: 
+  uses-material-design: true
+  assets:
+    - assets/images/logoaka.jpg
+    - assets/images/pattern.png
+  fonts:
+    - family: Peanut Butter
+      fonts:
+        - asset: assets/font/peanut_butter_2/Peanut Butter.ttf
+    - family: roboto
+      fonts:
+        - asset: assets/font/roboto/Roboto-Regular.ttf
