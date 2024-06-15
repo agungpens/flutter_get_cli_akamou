@@ -17,14 +17,14 @@ class MouData {
   int id;
   String nomorMou;
   String judulMou;
-  int jenisDoc;
+  int? jenisDoc; // Make jenisDoc nullable
   String tanggalDibuat;
   String tanggalBerakhir;
   String fileMou;
   String filePath;
-  int levelMou;
+  int? levelMou; // Make levelMou nullable
   KategoriMou kategoriMou;
-  int relevansiProdi;
+  int? relevansiProdi; // Make relevansiProdi nullable
   String status;
   String kerjaSamaDengan;
   String createdAt;
@@ -61,14 +61,14 @@ class MouData {
       id: json['id'],
       nomorMou: json['nomor_mou'],
       judulMou: json['judul_mou'],
-      jenisDoc: json['jenis_doc'],
+      jenisDoc: json['jenis_doc'] as int?, // Convert to nullable int
       tanggalDibuat: json['tanggal_dibuat'],
       tanggalBerakhir: json['tanggal_berakhir'],
       fileMou: json['file_mou'],
       filePath: json['file_path'],
-      levelMou: json['level_mou'],
+      levelMou: json['level_mou'] as int?, // Convert to nullable int
       kategoriMou: KategoriMou.fromJson(json['kategori_mou']),
-      relevansiProdi: json['relevansi_prodi'],
+      relevansiProdi: json['relevansi_prodi'] as int?, // Convert to nullable int
       status: json['status'],
       kerjaSamaDengan: json['kerja_sama_dengan'],
       createdAt: json['created_at'],
@@ -76,11 +76,11 @@ class MouData {
       deletedAt: json['deleted_at'],
       levelDocMou: LevelDocMou.fromJson(json['level_doc_mou']),
       jenisMou: JenisMou.fromJson(json['jenis_mou']),
-      relevansiProdiMou:
-          RelevansiProdiMou.fromJson(json['relevansi_prodi_mou']),
+      relevansiProdiMou: RelevansiProdiMou.fromJson(json['relevansi_prodi_mou']),
     );
   }
 }
+
 
 class KategoriMou {
   int id;

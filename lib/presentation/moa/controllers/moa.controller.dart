@@ -1,31 +1,33 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:get_cli/domain/utils/api_endpoint.dart';
+import 'package:http/http.dart' as http;
 
-class MouController extends GetxController {
+class MoaController extends GetxController {
   var mouList = [].obs;
   var isLoading = true.obs;
 
   @override
   void onInit() {
-    fetchMouData();
+    fetchMoaData();
     super.onInit();
   }
 
-  Future<void> fetchMouData() async {
+  Future<void> fetchMoaData() async {
     try {
       final response = await http.get(
-          Uri.parse(ApiEndPoints.baseUrl + ApiEndPoints.authEndPoints.mouData));
+          Uri.parse(ApiEndPoints.baseUrl + ApiEndPoints.authEndPoints.moaDta));
 
       if (response.statusCode == 200) {
         final jsonData = jsonDecode(response.body);
 
-        final List<dynamic> dataList = jsonData['data'];
+        // Clear previous data before adding new data
+        mouList.clear();
 
-        mouList.value = dataList;
+        // Add the data to the mouList
+        mouList.addAll(jsonData['data']);
 
-        isLoading.value = false;
+        isLoading.value = false; // Set isLoading to false when data is loaded
       } else {
         isLoading.value =
             false; // Ensure isLoading is set to false in case of error

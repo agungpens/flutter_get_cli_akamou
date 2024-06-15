@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:get_cli/infrastructure/navigation/bindings/controllers/my_controller.dart';
+// import 'package:get_cli/presentation/input_kegiatan/input_kegiatan.screen.dart';
+import 'package:get_cli/presentation/mou/mou.screen.dart';
 
 import 'package:get_cli/presentation/screens.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -82,25 +84,25 @@ class HomeScreen extends GetView<HomeController> {
                                       }),
                                       buildCard(Icons.my_library_books,
                                           "Momerandum Of \nAgreement", () {
-                                        // Tambahkan logika untuk card Home di sini
+                                        Get.to(() => MoaScreen());
                                       }),
                                     ],
                                   ),
                                 ),
-                                Expanded(
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      buildCard(Icons.post_add,
-                                          "Input Kegiatan \nDokumen", () {
-                                        // Tambahkan logika untuk card Notifications di sini
-                                      }),
-                                      buildCard(Icons.account_circle,
-                                          "Lihat Token", () {}),
-                                    ],
-                                  ),
-                                ),
+                                // Expanded(
+                                //   child: Column(
+                                //     mainAxisAlignment:
+                                //         MainAxisAlignment.spaceEvenly,
+                                //     children: [
+                                //       buildCard(Icons.post_add,
+                                //           "Input Kegiatan \nDokumen", () {
+                                //         Get.to(() => InputKegiatanScreen());
+                                //       }),
+                                //       buildCard(Icons.account_circle,
+                                //           "Lihat Token", () {}),
+                                //     ],
+                                //   ),
+                                // ),
                               ],
                             );
                           },
@@ -167,8 +169,18 @@ class actionBar extends StatelessWidget {
             child: ListTile(
               leading: Icon(Icons.person),
               title: Text('Profile'),
-              onTap: () {
-                // Tambahkan logika untuk menu Profile di sini
+              onTap: () async {
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                int? idUser = prefs.getInt('id_user');
+                // Lakukan logika sesuai dengan nilai id_user
+                if (idUser != null) {
+                  Get.back(); // Close the popup menu
+                  Get.to(() => ProfileScreen());
+                } else {
+                  // Jika token tidak ada, mungkin pengguna belum login
+                  // Anda dapat menangani ini dengan cara yang sesuai
+                  Get.snackbar('Error', 'User ID not found');
+                }
               },
             ),
           ),
@@ -195,8 +207,7 @@ class actionBar extends StatelessWidget {
               leading: Icon(Icons.panorama_fish_eye_sharp),
               title: Text('Lihat Token'),
               onTap: () async {
-                SharedPreferences prefs =
-                    await SharedPreferences.getInstance();
+                SharedPreferences prefs = await SharedPreferences.getInstance();
                 String? token = prefs.getString('token');
                 // Lakukan logika sesuai dengan nilai token
                 if (token != null) {

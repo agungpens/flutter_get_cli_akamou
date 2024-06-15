@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_cli/presentation/profile/controllers/profile.controller.dart';
+import 'controllers/profile.controller.dart';
 
-class ProdiScreen extends StatelessWidget {
-  const ProdiScreen({Key? key}) : super(key: key);
-
+class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ProfileController controller = Get.put(ProfileController());
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ProdiScreen'),
+        title: const Text('ProfileScreen'),
         centerTitle: true,
       ),
       body: Obx(() {

@@ -1,26 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_cli/infrastructure/navigation/bindings/controllers/my_controller.dart';
-import 'package:get_cli/presentation/mou/controllers/mou.controller.dart';
+import 'package:get_cli/presentation/moa/controllers/moa.controller.dart';
 import 'package:get_cli/presentation/screens.dart';
 
-class MouScreen extends StatelessWidget {
-  final MyController c = Get.find<MyController>();
-  final MouController controller = Get.put(MouController(), permanent: false);
+class MoaScreen extends StatelessWidget {
+  final MoaController controller = Get.put(MoaController(), permanent: false);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Momerandum Of Understanding',
+          'Memorandum Of Agreements',
           style: TextStyle(
             fontFamily: 'Peanut Butter',
           ),
         ),
-        actions: [
-          actionBar(c: c),
-        ],
       ),
       body: SafeArea(
         child: Obx(() {
@@ -30,7 +25,7 @@ class MouScreen extends StatelessWidget {
             );
           } else if (controller.mouList.isEmpty) {
             return Center(
-              child: Text('No MOU data available'),
+              child: Text('No MOA data available'),
             );
           } else {
             return ListView.builder(
@@ -52,10 +47,10 @@ class DaftarDokumen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String judul = mouData['judul_mou'];
-    String kerjaSamaDengan = mouData['kerja_sama_dengan'];
+    String judul = mouData['judul_moa'] ?? 'Unknown Title';
+    String kerjaSamaDengan = mouData['kerja_sama_dengan'] ?? 'Unknown Partner';
     bool isActive = mouData['status'] == 'AKTIF';
-    String tanggal = mouData['tanggal_dibuat'];
+    String tanggal = mouData['tanggal_dibuat'] ?? 'Unknown Date';
 
     return ListTile(
       contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -93,9 +88,8 @@ class DaftarDokumen extends StatelessWidget {
   }
 
   void onTapAction(int id) {
-    // return print(id);
     if (id != null) {
-      Get.to(MouDetailScreen(), arguments: id);
+      Get.to(MoaDetailScreen(), arguments: id);
     } else {
       Get.snackbar('Error', 'Invalid MOU ID');
     }

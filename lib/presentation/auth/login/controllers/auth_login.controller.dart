@@ -63,7 +63,8 @@ class AuthLoginController extends GetxController {
           final SharedPreferences? prefs = await _prefs;
           prefs!.setString('token', json['token']);
 
-          _saveTokenToPrefs(json['token'], json['data']['nama']);
+          _saveTokenToPrefs(
+              json['token'], json['data']['nama'], json['data']['id']);
         } else {
           _showLoginFailedDialog(json['message']);
         }
@@ -91,9 +92,10 @@ class AuthLoginController extends GetxController {
   }
 
   // Fungsi untuk menyimpan token ke SharedPreferences
-  Future<void> _saveTokenToPrefs(String token, String nama) async {
+  Future<void> _saveTokenToPrefs(String token, String nama, int id_user) async {
     final SharedPreferences prefs = await _prefs;
     await prefs.setString('token', token);
+    await prefs.setInt('id_user', id_user);
     await prefs.setString('nama', nama);
     Get.snackbar(
       'Hi 👋',
