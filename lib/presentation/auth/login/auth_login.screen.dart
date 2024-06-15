@@ -139,37 +139,37 @@ class AuthLoginScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: FractionallySizedBox(
-                  widthFactor: 0.8,
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Apakah anda belum memiliki akun ? ',
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () => Get.to(() => AuthRegisterScreen()),
-                          child: Text(
-                            'Daftar!',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.blue,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              // Align(
+              //   alignment: Alignment.bottomCenter,
+              //   child: FractionallySizedBox(
+              //     widthFactor: 0.8,
+              //     child: Padding(
+              //       padding: const EdgeInsets.only(bottom: 20),
+              //       child: Row(
+              //         crossAxisAlignment: CrossAxisAlignment.center,
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: [
+              //           Text(
+              //             'Apakah anda belum memiliki akun ? ',
+              //             style: TextStyle(
+              //               fontSize: 16,
+              //             ),
+              //           ),
+              //           GestureDetector(
+              //             onTap: () => Get.to(() => AuthRegisterScreen()),
+              //             child: Text(
+              //               'Daftar!',
+              //               style: TextStyle(
+              //                 fontSize: 16,
+              //                 color: Colors.blue,
+              //               ),
+              //             ),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),
