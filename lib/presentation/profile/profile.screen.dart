@@ -9,7 +9,12 @@ class ProfileScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ProfileScreen'),
+        title: const Text(
+          'Profile',
+          style: TextStyle(
+            fontFamily: 'Peanut Butter',
+          ),
+        ),
         centerTitle: true,
       ),
       body: Obx(() {
@@ -24,22 +29,74 @@ class ProfileScreen extends StatelessWidget {
 
           return Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Nama: ${detailUser['nama_lengkap']}'),
-                SizedBox(height: 8),
-                Text('Username: ${user['username']}'),
-                SizedBox(height: 8),
-                Text('Jenis Kelamin: ${detailUser['jenis_kelamin']}'),
-                SizedBox(height: 8),
-                Text('No HP: ${detailUser['no_hp']}'),
-                SizedBox(height: 8),
-                Text('Alamat: ${detailUser['alamat']}'),
-                SizedBox(height: 8),
-                Text('Role: ${roles['nama_role']}'),
-                // Add more fields as needed
-              ],
+            child: SingleChildScrollView(
+              child: Card(
+                elevation: 4,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ListTile(
+                        leading: Icon(Icons.person),
+                        title: Text(
+                          'Nama Lengkap',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Text(detailUser['nama_lengkap']),
+                      ),
+                      Divider(),
+                      ListTile(
+                        leading: Icon(Icons.account_circle),
+                        title: Text(
+                          'Username',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Text(user['username']),
+                      ),
+                      Divider(),
+                      ListTile(
+                        leading: Icon(Icons.wc),
+                        title: Text(
+                          'Jenis Kelamin',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Text(detailUser['jenis_kelamin']),
+                      ),
+                      Divider(),
+                      ListTile(
+                        leading: Icon(Icons.phone),
+                        title: Text(
+                          'No HP',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Text(detailUser['no_hp']),
+                      ),
+                      Divider(),
+                      ListTile(
+                        leading: Icon(Icons.location_on),
+                        title: Text(
+                          'Alamat',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Text(detailUser['alamat']),
+                      ),
+                      Divider(),
+                      ListTile(
+                        leading: Icon(Icons.work),
+                        title: Text(
+                          'Role',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Text(roles['nama_role']),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
           );
         }

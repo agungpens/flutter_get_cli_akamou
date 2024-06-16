@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_cli/infrastructure/componen/badge_componen.dart';
 import 'package:get_cli/presentation/mou/detail/controllers/mou_detail.controller.dart';
 
 class MouDetailScreen extends StatelessWidget {
@@ -11,43 +12,98 @@ class MouDetailScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('MOU Detail'),
+        title: Text(
+          'MoU Detail',
+          style: TextStyle(
+            fontFamily: 'Peanut Butter',
+          ),
+        ),
       ),
-      body: Obx(() {
-        if (controller.isLoading.value) {
-          return Center(child: CircularProgressIndicator());
-        } else if (controller.mouData.isEmpty) {
-          return Center(child: Text('No data available'));
-        } else {
-          return Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
+     body: SingleChildScrollView(
+        padding: EdgeInsets.all(16.0),
+        child: Obx(() {
+          if (controller.isLoading.value) {
+            return Center(child: CircularProgressIndicator());
+          } else if (controller.mouData.isEmpty) {
+            return Center(child: Text('No data available'));
+          } else {
+            return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Nomor MOU: ${controller.mouData['nomor_mou']}'),
-                SizedBox(height: 8),
-                Text('Judul: ${controller.mouData['judul_mou']}'),
-                SizedBox(height: 8),
-                Text('Kerjasama Dengan: ${controller.mouData['kerja_sama_dengan']}'),
-                SizedBox(height: 8),
-                Text('Tanggal Dibuat: ${controller.mouData['tanggal_dibuat']}'),
-                SizedBox(height: 8),
-                Text('Tanggal Berakhir: ${controller.mouData['tanggal_berakhir']}'),
-                SizedBox(height: 8),
-                Text('Status: ${controller.mouData['status']}'),
-                SizedBox(height: 8),
-                Text('Jenis Dokumen: ${controller.mouData['jenis_doc']}'),
-                SizedBox(height: 8),
-                Text('Level MOU: ${controller.mouData['level_mou']}'),
-                SizedBox(height: 8),
-                Text('Kategori MOU: ${controller.mouData['kategori_mou']}'),
-                SizedBox(height: 8),
-                Text('Relevansi Prodi: ${controller.mouData['relevansi_prodi'].join(", ")}'),
+                _buildDetailRow("Nomor MOu", controller.mouData['nomor_mou']),
+                _buildDetailRow("Judul", controller.mouData['judul_mou']),
+                _buildDetailRow("Kerjasama Dengan",
+                    controller.mouData['kerja_sama_dengan']),
+                _buildDetailRow(
+                    "Tanggal Dibuat", controller.mouData['tanggal_dibuat']),
+                _buildDetailRow(
+                    "Tanggal Berakhir", controller.mouData['tanggal_berakhir']),
+                _buildDetailRowWithBadge("Status", controller.mouData['status']),
+                _buildDetailRow(
+                    "Jenis Dokumen", controller.mouData['jenis_doc']),
+                _buildDetailRow("Level MOu", controller.mouData['level_mou']),
+                _buildDetailRow(
+                    "Kategori MOu", controller.mouData['kategori_mou']),
+                _buildDetailRow(
+                    "Relevansi Prodi",
+                    controller.mouData['relevansi_prodi'] != null
+                        ? (controller.mouData['relevansi_prodi'] as List)
+                            .join(", ")
+                        : "N/A"),
               ],
-            ),
-          );
-        }
-      }),
+            );
+          }
+        }),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Handle the download action
+          controller.downloadDocument();
+        },
+        child: Icon(Icons.download),
+        tooltip: 'Unduh Dokumen',
+      ),
+    );
+  }
+
+  Widget _buildDetailRow(String label, String value) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(height: 4),
+        Text(
+          value ?? "N/A",
+          style: TextStyle(fontSize: 14),
+        ),
+        SizedBox(height: 12),
+      ],
+    );
+  }
+
+  Widget _buildDetailRowWithBadge(String label, String status) {
+    bool isActive = status == 'AKTIF'; // Adjust this condition based on your status logic
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(height: 4),
+        BadgeComponen(isActive: isActive),
+        SizedBox(height: 12),
+      ],
     );
   }
 }
+

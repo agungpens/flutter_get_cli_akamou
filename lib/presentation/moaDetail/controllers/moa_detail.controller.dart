@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:get_cli/domain/utils/api_endpoint.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 class MoaDetailController extends GetxController {
   var isLoading = true.obs;
   late int moaId;
@@ -41,6 +42,21 @@ class MoaDetailController extends GetxController {
       Get.snackbar('Error data loading!', 'Exception: $e');
     } finally {
       isLoading.value = false;
+    }
+  }
+
+    Future<void> downloadDocument() async {
+    try {
+      String? url =
+          ApiEndPoints.baseUrlWeb + moaData['file_path'] + moaData['file_moa'];
+
+      if (url != null && await canLaunch(url)) {
+        await launch(url);
+      } else {
+        throw 'Could not launch $url';
+      }
+    } catch (e) {
+      Get.snackbar('Error', 'Could not launch URL: $e');
     }
   }
 }

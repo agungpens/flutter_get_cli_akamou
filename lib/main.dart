@@ -6,6 +6,7 @@ import 'package:get_cli/infrastructure/navigation/bindings/controllers/my_contro
 import 'infrastructure/navigation/navigation.dart';
 import 'infrastructure/navigation/routes.dart';
 
+
 void main() async {
   var initialRoute = await Routes.initialRoute;
   runApp(MyApp(initialRoute));

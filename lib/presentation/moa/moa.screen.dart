@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_cli/infrastructure/componen/badge_componen.dart';
 import 'package:get_cli/presentation/moa/controllers/moa.controller.dart';
 import 'package:get_cli/presentation/screens.dart';
 
@@ -70,7 +71,7 @@ class DaftarDokumen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Expanded(
-            child: Badge(
+            child: BadgeComponen(
               isActive: isActive,
             ),
           ),
@@ -96,23 +97,3 @@ class DaftarDokumen extends StatelessWidget {
   }
 }
 
-class Badge extends StatelessWidget {
-  final bool isActive;
-
-  const Badge({required this.isActive});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      decoration: BoxDecoration(
-        color: isActive ? Colors.green : Colors.red,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Text(
-        isActive ? 'Aktif' : 'Tidak Aktif',
-        style: TextStyle(color: Colors.white),
-      ),
-    );
-  }
-}
