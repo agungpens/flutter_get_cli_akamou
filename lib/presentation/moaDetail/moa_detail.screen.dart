@@ -9,7 +9,7 @@ class MoaDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final MoaDetailController controller = Get.put(MoaDetailController());
     int moaId = Get.arguments ?? 0;
-    print("MoaDetailScreen received ID: $moaId");
+    print("Received MoA ID: $moaId");
 
     return Scaffold(
       appBar: AppBar(
@@ -31,7 +31,7 @@ class MoaDetailScreen extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildDetailRow("Nomor MOA", controller.moaData['nomor_moa']),
+                _buildDetailRow("Nomor MoA", controller.moaData['nomor_moa']),
                 _buildDetailRow("Judul", controller.moaData['judul_moa']),
                 _buildDetailRow("Kerjasama Dengan",
                     controller.moaData['kerja_sama_dengan']),
@@ -42,9 +42,9 @@ class MoaDetailScreen extends StatelessWidget {
                 _buildDetailRowWithBadge("Status", controller.moaData['status']),
                 _buildDetailRow(
                     "Jenis Dokumen", controller.moaData['jenis_doc']),
-                _buildDetailRow("Level MOA", controller.moaData['level_moa']),
+                _buildDetailRow("Level MoA", controller.moaData['level_moa']),
                 _buildDetailRow(
-                    "Kategori MOA", controller.moaData['kategori_moa']),
+                    "Kategori MoA", controller.moaData['kategori_moa']),
                 _buildDetailRow(
                     "Relevansi Prodi",
                     controller.moaData['relevansi_prodi'] != null
@@ -56,14 +56,26 @@ class MoaDetailScreen extends StatelessWidget {
           }
         }),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Handle the download action
-          controller.downloadDocument();
-        },
-        child: Icon(Icons.download),
-        tooltip: 'Unduh Dokumen',
-      ),
+      floatingActionButton: Obx(() {
+        // Show download progress indicator when download in progress
+        if (controller.downloadProgress.value > 0 && controller.downloadProgress.value < 100) {
+          return FloatingActionButton.extended(
+            onPressed: null,
+            label: Text('${controller.downloadProgress.value.toStringAsFixed(1)}%'),
+            icon: Icon(Icons.download),
+            backgroundColor: Colors.blue,
+          );
+        } else {
+          // Show regular download button when no download is in progress
+          return FloatingActionButton(
+            onPressed: () {
+              controller.downloadDocument(controller.moaData['file_path'], controller.moaData['file_moa']);
+            },
+            child: Icon(Icons.download),
+            tooltip: 'Unduh Dokumen',
+          );
+        }
+      }),
     );
   }
 
@@ -101,10 +113,9 @@ class MoaDetailScreen extends StatelessWidget {
           ),
         ),
         SizedBox(height: 4),
-        BadgeComponen(isActive: isActive),
+        BadgeComponen(isActive: isActive), // Assuming BadgeComponen is a custom widget
         SizedBox(height: 12),
       ],
     );
   }
 }
-
