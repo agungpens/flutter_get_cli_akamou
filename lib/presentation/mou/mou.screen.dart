@@ -7,13 +7,14 @@ import 'package:get_cli/presentation/screens.dart';
 class MouScreen extends StatelessWidget {
   final MyController c = Get.find<MyController>();
   final MouController controller = Get.put(MouController(), permanent: false);
+  final TextEditingController searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Momerandum Of Understanding',
+          'Memorandum Of Understanding',
           style: TextStyle(
             fontFamily: 'Peanut Butter',
           ),
@@ -21,6 +22,38 @@ class MouScreen extends StatelessWidget {
         actions: [
           actionBar(c: c),
         ],
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(48.0),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: searchController,
+                    onChanged: (value) {
+                      controller.searchMou(value);
+                    },
+                    decoration: InputDecoration(
+                      hintText: 'Search...',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 8),
+                ElevatedButton(
+                  onPressed: () {
+                    searchController.clear();
+                    controller.resetMouList();
+                  },
+                  child: Text('Reset'),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
       body: SafeArea(
         child: Obx(() {
@@ -93,7 +126,6 @@ class DaftarDokumen extends StatelessWidget {
   }
 
   void onTapAction(int id) {
-    // return print(id);
     if (id != null) {
       Get.to(MouDetailScreen(), arguments: id);
     } else {

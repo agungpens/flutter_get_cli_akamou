@@ -6,6 +6,7 @@ import 'package:get_cli/presentation/screens.dart';
 
 class MoaScreen extends StatelessWidget {
   final MoaController controller = Get.put(MoaController(), permanent: false);
+  final TextEditingController searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +16,38 @@ class MoaScreen extends StatelessWidget {
           'Memorandum Of Agreements',
           style: TextStyle(
             fontFamily: 'Peanut Butter',
+          ),
+        ),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(48.0),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: searchController,
+                    onChanged: (value) {
+                      controller.searchMoa(value);
+                    },
+                    decoration: InputDecoration(
+                      hintText: 'Search...',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 8),
+                ElevatedButton(
+                  onPressed: () {
+                    searchController.clear();
+                    controller.resetMouList();
+                  },
+                  child: Text('Reset'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -96,4 +129,3 @@ class DaftarDokumen extends StatelessWidget {
     }
   }
 }
-
