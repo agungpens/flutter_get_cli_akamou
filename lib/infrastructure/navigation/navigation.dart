@@ -81,5 +81,15 @@ class Nav {
       page: () => ProfileScreen(),
       binding: ProfileControllerBinding(),
     ),
+    GetPage(
+      name: Routes.MASTER_TEMPLATE,
+      page: () => MasterTemplateScreen(),
+      binding: MasterTemplateControllerBinding(),
+    ),
+    GetPage(
+      name: Routes.MASTER_TEMPLATE_DETAIL,
+      page: () => MasterTemplateDetailScreen(),
+      binding: MasterTemplateDetailControllerBinding(),
+    ),
   ];
 }

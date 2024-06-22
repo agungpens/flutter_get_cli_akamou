@@ -1,5 +1,5 @@
 class ApiEndPoints {
-  // static final String baseUrl ="http://192.168.1.5/LARAVEL/akamou-new/public/api/";
+  // static final String baseUrl ="http://192.168.1.13/LARAVEL/akamou-new/public/api/";
   // static final String baseUrlWeb ="http://192.168.1.13/LARAVEL/akamou-new/public/";
   static final String baseUrl = "https://simouaka.pjjaka.com/public/api/";
   static final String baseUrlWeb = "https://simouaka.pjjaka.com/public";
@@ -18,4 +18,8 @@ class _AuthEndPoints {
   final String listInstansi = 'mobile/kegiatan/getDataInstansi';
   final String searchDataByInstansi = 'kegiatan/searchDataByInstansi';
   final String getDataMoaByMou = 'kegiatan/getDataMoa';
+  
+// MASTER TEMPLATE
+  final String getDataMasterTemplate = 'mobile/master_template/getData';
+  final String detailDataMasterTemplate = 'mobile/master_template/getDetailDataMobile';
 }

@@ -2,6 +2,8 @@ export 'package:get_cli/infrastructure/navigation/bindings/controllers/auth_logi
 export 'package:get_cli/infrastructure/navigation/bindings/controllers/auth_register.controller.binding.dart'; 
 export 'package:get_cli/infrastructure/navigation/bindings/controllers/home.controller.binding.dart'; 
 export 'package:get_cli/infrastructure/navigation/bindings/controllers/input_kegiatan.controller.binding.dart'; 
+export 'package:get_cli/infrastructure/navigation/bindings/controllers/master_template.controller.binding.dart'; 
+export 'package:get_cli/infrastructure/navigation/bindings/controllers/master_template_detail.controller.binding.dart'; 
 export 'package:get_cli/infrastructure/navigation/bindings/controllers/moa.controller.binding.dart'; 
 export 'package:get_cli/infrastructure/navigation/bindings/controllers/moa_detail.controller.binding.dart'; 
 export 'package:get_cli/infrastructure/navigation/bindings/controllers/mou.controller.binding.dart'; 
