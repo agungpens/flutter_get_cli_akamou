@@ -98,21 +98,9 @@ class HomeScreen extends GetView<HomeController> {
                                           "Master Template \nDokumen", () {
                                         Get.to(() => MasterTemplateScreen());
                                       }),
-                                      buildCard(Icons.account_circle, "Profile",
+                                      buildCard(Icons.bar_chart_outlined, "Chart Dashboard",
                                           () async {
-                                        SharedPreferences prefs =
-                                            await SharedPreferences
-                                                .getInstance();
-                                        int? idUser = prefs.getInt('id_user');
-                                        // Lakukan logika sesuai dengan nilai id_user
-                                        if (idUser != null) {
-                                          Get.back(); // Close the popup menu
-                                          Get.to(() => ProfileScreen());
-                                        } else {
-                                          // Jika token tidak ada, mungkin pengguna belum login
-                                          // Anda dapat menangani ini dengan cara yang sesuai
-                                          Get.snackbar('Error', 'User ID not found');
-                                        }
+                                        Get.to(() => DashboardScreen());
                                       }),
                                     ],
                                   ),

@@ -22,4 +22,8 @@ class _AuthEndPoints {
 // MASTER TEMPLATE
   final String getDataMasterTemplate = 'mobile/master_template/getData';
   final String detailDataMasterTemplate = 'mobile/master_template/getDetailDataMobile';
+  
+// Dashboard
+  final String getDataDashboard = 'mobile/Dashboard';
+
 }

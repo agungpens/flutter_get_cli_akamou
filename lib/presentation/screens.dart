@@ -1,5 +1,6 @@
 export 'package:get_cli/presentation/auth/login/auth_login.screen.dart';
 export 'package:get_cli/presentation/auth/register/auth_register.screen.dart';
+export 'package:get_cli/presentation/dashboard/dashboard.screen.dart';
 export 'package:get_cli/presentation/home/home.screen.dart';
 export 'package:get_cli/presentation/master_template/master_template.screen.dart';
 export 'package:get_cli/presentation/master_template_detail/master_template_detail.screen.dart';

@@ -1,5 +1,6 @@
 export 'package:get_cli/infrastructure/navigation/bindings/controllers/auth_login.controller.binding.dart'; 
 export 'package:get_cli/infrastructure/navigation/bindings/controllers/auth_register.controller.binding.dart'; 
+export 'package:get_cli/infrastructure/navigation/bindings/controllers/dashboard.controller.binding.dart'; 
 export 'package:get_cli/infrastructure/navigation/bindings/controllers/home.controller.binding.dart'; 
 export 'package:get_cli/infrastructure/navigation/bindings/controllers/input_kegiatan.controller.binding.dart'; 
 export 'package:get_cli/infrastructure/navigation/bindings/controllers/master_template.controller.binding.dart'; 

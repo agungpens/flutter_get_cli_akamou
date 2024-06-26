@@ -91,5 +91,10 @@ class Nav {
       page: () => MasterTemplateDetailScreen(),
       binding: MasterTemplateDetailControllerBinding(),
     ),
+    GetPage(
+      name: Routes.DASHBOARD,
+      page: () => DashboardScreen(),
+      binding: DashboardControllerBinding(),
+    ),
   ];
 }

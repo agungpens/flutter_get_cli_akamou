@@ -1,7 +1,7 @@
 class Routes {
   static Future<String> get initialRoute async {
     // TODO: implement method
-    return HOME;
+    return AUTH_LOGIN;
   }
 
   static const AUTH_LOGIN = '/auth-login';
@@ -9,11 +9,12 @@ class Routes {
   static const HOME = '/home';
   static const INPUT_KEGIATAN = '/input-kegiatan';
   static const MASTER_TEMPLATE = '/master-template';
+  static const MASTER_TEMPLATE_DETAIL = '/master-template-detail';
   static const MOA = '/moa';
   static const MOA_DETAIL = '/moa-detail';
   static const MOU = '/mou';
   static const MOU_DETAIL = '/mou-detail';
   static const PRODI = '/prodi';
   static const PROFILE = '/profile';
-  static const MASTER_TEMPLATE_DETAIL = '/master-template-detail';
+  static const DASHBOARD = '/dashboard';
 }
